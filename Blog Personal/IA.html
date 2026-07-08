@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alejandro Peralta | Blog & Porfolio</title>
+    <style>
+        /* --- VARIABLES DE COLOR (Tema Oscuro/Tech) --- */
+        :root {
+            --bg-principal: #0f172a;
+            --bg-tarjeta: #1e293b;
+            --texto-principal: #f8fafc;
+            --texto-secundario: #94a3b8;
+            --color-acento: #38bdf8;
+            --color-acento-hover: #0ea5e9;
+            --borde: #334155;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- CABECERA / NAV --- */
+        header {
+            border-bottom: 1px solid var(--borde);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 23, 42, 0.8);
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-acento);
+            text-decoration: none;
+        }
+
+        .enlaces-nav a {
+            color: var(--texto-secundario);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .enlaces-nav a:hover {
+            color: var(--color-acento);
+        }
+
+        /* --- SECCIÓN INTRODUCCIÓN --- */
+        .seccion-intro {
+            padding: 80px 0 60px 0;
+        }
+
+        .seccion-intro h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .seccion-intro h1 span {
+            color: var(--color-acento);
+        }
+
+        .seccion-intro p {
+            color: var(--texto-secundario);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 25px;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--bg-principal);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--color-acento-hover);
+        }
+
+        /* --- TITULARES DE SECCIÓN --- */
+        .titulo-seccion {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .titulo-seccion::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--borde);
+        }
+
+        /* --- REJILLA DE PROYECTOS --- */
+        .seccion-proyectos {
+            padding: 40px 0;
+        }
+
+        .grid-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta-proyecto {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .tarjeta-proyecto:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-acento);
+        }
+
+        .tarjeta-proyecto h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .tarjeta-proyecto p {
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--color-acento);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .enlace-proyecto {
+            color: var(--texto-principal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .enlace-proyecto:hover {
+            color: var(--color-acento);
+        }
+
+        /* --- SECCIÓN BLOG (ENTRADAS RECIENTES) --- */
+        .seccion-blog {
+            padding: 40px 0;
+        }
+
+        .lista-entradas {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tarjeta-entrada {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .tarjeta-entrada:hover {
+            border-color: var(--color-acento);
+        }
+
+        .info-entrada h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .info-entrada p {
+            color: var(--texto-secundario);
+            font-size: 0.9rem;
+        }
+
+        .fecha-entrada {
+            color: var(--texto-secundario);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .seccion-intro h1 { font-size: 2.2rem; }
+            .tarjeta-entrada { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .fecha-entrada { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="contenedor nav">
+            <a href="#" class="logo">&lt;alejandroperalta /&gt;</a>
+            <div class="enlaces-nav">
+                <a href="#proyectos">Proyectos</a>
+                <a href="#blog">Blog</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        
+        <!-- INTRODUCCIÓN -->
+        <section class="seccion-intro">
+            <h1>¡Hola! Soy <span>Alejandro Peralta</span> 👋</h1>
+            <p>
+                Estudiante de Desarrollo de Aplicaciones Web (DAW). Me apasiona la programación, 
+                el diseño de bases de datos robustas y la administración de sistemas en entornos Linux. 
+                Aquí comparto lo que voy construyendo y aprendiendo en el camino.
+            </p>
+            <a href="#contacto" class="btn">Hablemos</a>
+        </section>
+
+        <!-- SECCIÓN PROYECTOS -->
+        <section id="proyectos" class="seccion-proyectos">
+            <h2 class="titulo-seccion">Proyectos destacados</h2>
+            
+            <div class="grid-proyectos">
+                <!-- Proyecto 1 -->
+                <div class="tarjeta-proyecto">
+                    <div>
+                        <h3>Gestor de Inventario Local</h3>
+                        <p>Aplicación de escritorio para la gestión y control de stock de productos, optimizando consultas y transacciones complejas.</p>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">JDBC</span>
+                        </div>
+                    </div>
+                    <a href="#" class="enlace-proyecto">Ver código en GitHub →</a>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="tarjeta-proyecto">
+                    <div>
+                        <h3>Despliegue de ERP con Docker</h3>
+                        <p>Automatización de infraestructura web configurando contenedores aislados y volúmenes persistentes en servidores en la nube.</p>
+                        <div class="tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Odoo v14</span>
+                            <span class="tag">AWS EC2</span>
+                        </div>
+                    </div>
+                    <a href="#" class="enlace-proyecto">Ver documentación →</a>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="tarjeta-proyecto">
+                    <div>
+                        <h3>Entorno de Pruebas Seguro</h3>
+                        <p>Configuración de infraestructura virtualizada local en Linux mediante hipervisores nativos para testear servicios de red.</p>
+                        <div class="tags">
+                            <span class="tag">Debian</span>
+                            <span class="tag">KVM / QEMU</span>
+                            <span class="tag">Redes</span>
+                        </div>
+                    </div>
+                    <a href="#" class="enlace-proyecto">Ver artículo →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN BLOG -->
+        <section id="blog" class="seccion-blog">
+            <h2 class="titulo-seccion">Artículos del blog</h2>
+            
+            <div class="lista-entradas">
+                <!-- Entrada 1 -->
+                <a href="#" class="tarjeta-entrada">
+                    <div class="info-entrada">
+                        <h3>Cómo configurar tu primer entorno virtual en Debian 13 sin entorno gráfico</h3>
+                        <p>Una guía paso a paso utilizando KVM y herramientas de terminal para optimizar recursos al máximo.</p>
+                    </div>
+                    <div class="fecha-entrada">Julio 2026</div>
+                </a>
+
+                <!-- Entrada 2 -->
+                <a href="#" class="tarjeta-entrada">
+                    <div class="info-entrada">
+                        <h3>Por qué decidí estudiar DAW y qué he aprendido en mi primer año</h3>
+                        <p>Un repaso honesto sobre las asignaturas clave, la curva de aprendizaje con Java y los retos superados.</p>
+                    </div>
+                    <div class="fecha-entrada">Junio 2026</div>
+                </a>
+
+                <!-- Entrada 3 -->
+                <a href="#" class="tarjeta-entrada">
+                    <div class="info-entrada">
+                        <h3>Optimizando consultas SQL: De la teoría del aula a bases de datos comerciales</h3>
+                        <p>Trucos prácticos de indexación y joins que marcan la diferencia en el rendimiento de una aplicación.</p>
+                    </div>
+                    <div class="fecha-entrada">Mayo 2026</div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
